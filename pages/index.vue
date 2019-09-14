@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <form>
+    <form @submit.prevent="addItem(newPost.author, newPost.text)">
       <label for="author">名前</label>
-      <input type="text" id="author" name="author" />
+      <input id="author" v-model="newPost.author" type="text" name="author" />
       <label for="text">本文</label>
-      <input type="text" id="text" name="text" />
+      <input id="text" v-model="newPost.text" type="text" name="text" />
       <input type="submit" value="投稿する" />
     </form>
     <div v-for="(item, index) in items" :key="index">
@@ -18,10 +18,18 @@
 export default {
   data: () => {
     return {
+      newPost: { author: '', text: '' },
       items: [
         { author: 'taro', text: 'hoge' },
         { author: 'hanako', text: 'fuga' }
       ]
+    }
+  },
+  methods: {
+    addItem(author, text) {
+      this.items.push({ author, text })
+      this.newPost.author = ''
+      this.newPost.text = ''
     }
   }
 }
