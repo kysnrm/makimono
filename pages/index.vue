@@ -5,7 +5,7 @@
       <input id="author" v-model="newPost.author" type="text" name="author" />
       <label for="text">本文</label>
       <input id="text" v-model="newPost.text" type="text" name="text" />
-      <input type="submit" value="投稿する" />
+      <button type="submit">投稿する</button>
     </form>
     <div v-for="(item, index) in items" :key="index">
       {{ item.author }}
@@ -41,5 +41,21 @@ export default {
 <style>
 .container {
   writing-mode: vertical-rl;
+}
+input {
+  width: 6rem;
+  margin-right: -6rem;
+  margin-left: 2rem;
+  display: block;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  writing-mode: initial;
+}
+button {
+  margin-right: 100%;
+  margin-left: 2rem;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  writing-mode: initial;
 }
 </style>
