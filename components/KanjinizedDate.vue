@@ -1,5 +1,5 @@
 <template>
-  <div>{{ dateKanjinizer(date) }}</div>
+  <div class="post-date">{{ dateKanjinizer(date) }}</div>
 </template>
 
 <script>
@@ -52,3 +52,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.post-date {
+  font-size: 0.75rem;
+  line-height: 1;
+  color: #666;
+}
+</style>
