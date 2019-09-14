@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="post">
     {{ author }}
     {{ text }}
     <kanjinized-date :date="createdAt"></kanjinized-date>
@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import kanjinizedDate from './date'
+import KanjinizedDate from './KanjinizedDate'
 export default {
   components: {
-    'kanjinized-date': kanjinizedDate
+    KanjinizedDate
   },
   props: {
     author: { type: String, required: true, default: 'UserName' },
@@ -19,3 +19,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.post {
+  padding: 1rem;
+  border: 1px solid #000;
+}
+</style>

@@ -7,21 +7,21 @@
       <input id="text" v-model="newPost.text" type="text" name="text" />
       <button type="submit">投稿する</button>
     </form>
-    <post
+    <posted-item
       v-for="(post, index) in posts"
       :key="index"
       :author="post.author"
       :text="post.text"
       :created-at="post.createdAt"
-    ></post>
+    ></posted-item>
   </div>
 </template>
 
 <script>
-import post from '@/components/post'
+import PostedItem from '@/components/PostedItem'
 export default {
   components: {
-    post
+    PostedItem
   },
   data: () => {
     return {
@@ -32,7 +32,7 @@ export default {
   methods: {
     addPost(author, text) {
       if (author !== '' && text !== '') {
-        this.posts.push({ author, text, createdAt: new Date() })
+        this.posts.unshift({ author, text, createdAt: new Date() })
         this.newPost.text = ''
       }
     }
@@ -40,8 +40,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container {
+  position: fixed;
+  right: 0;
   writing-mode: vertical-rl;
 }
 input {
@@ -59,5 +61,8 @@ button {
   transform: rotate(90deg);
   transform-origin: top left;
   writing-mode: initial;
+}
+.post {
+  margin-left: 0.5rem;
 }
 </style>
