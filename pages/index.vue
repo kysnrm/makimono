@@ -10,6 +10,7 @@
     <div v-for="(item, index) in items" :key="index">
       {{ item.author }}
       {{ item.text }}
+      {{ item.createdAt }}
     </div>
   </div>
 </template>
@@ -19,15 +20,12 @@ export default {
   data: () => {
     return {
       newPost: { author: '', text: '' },
-      items: [
-        { author: 'taro', text: 'hoge' },
-        { author: 'hanako', text: 'fuga' }
-      ]
+      items: []
     }
   },
   methods: {
     addItem(author, text) {
-      this.items.push({ author, text })
+      this.items.push({ author, text, createdAt: Date() })
       this.newPost.author = ''
       this.newPost.text = ''
     }
