@@ -19,10 +19,7 @@ export default {
   data: () => {
     return {
       newPost: { author: '', text: '' },
-      items: [
-        { author: 'taro', text: 'hoge' },
-        { author: 'hanako', text: 'fuga' }
-      ]
+      items: []
     }
   },
   methods: {
