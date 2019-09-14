@@ -33,6 +33,9 @@ export default {
         if (tensPlace === 1) {
           return '十' + kanjinizedNum[onesPlace]
         }
+        if (onesPlace === 0) {
+          return kanjinizedNum[tensPlace] + '十'
+        }
         return kanjinizedNum[tensPlace] + '十' + kanjinizedNum[onesPlace]
       }
       const month = createdAt.getMonth()

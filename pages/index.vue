@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import kanjinizedDate from '../components/date'
+import kanjinizedDate from '@/components/date'
 export default {
   components: {
     'kanjinized-date': kanjinizedDate
