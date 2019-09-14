@@ -1,36 +1,38 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addItem(newPost.author, newPost.text)">
+    <form @submit.prevent="addPost(newPost.author, newPost.text)">
       <label for="author">名前</label>
       <input id="author" v-model="newPost.author" type="text" name="author" />
       <label for="text">本文</label>
       <input id="text" v-model="newPost.text" type="text" name="text" />
       <button type="submit">投稿する</button>
     </form>
-    <div v-for="(item, index) in items" :key="index">
-      {{ item.author }}
-      {{ item.text }}
-      <kanjinized-date :date="item.createdAt"></kanjinized-date>
-    </div>
+    <post
+      v-for="(post, index) in posts"
+      :key="index"
+      :author="post.author"
+      :text="post.text"
+      :created-at="post.createdAt"
+    ></post>
   </div>
 </template>
 
 <script>
-import kanjinizedDate from '@/components/date'
+import post from '@/components/post'
 export default {
   components: {
-    'kanjinized-date': kanjinizedDate
+    post
   },
   data: () => {
     return {
       newPost: { author: '', text: '' },
-      items: []
+      posts: []
     }
   },
   methods: {
-    addItem(author, text) {
+    addPost(author, text) {
       if (author !== '' && text !== '') {
-        this.items.push({ author, text, createdAt: new Date() })
+        this.posts.push({ author, text, createdAt: new Date() })
         this.newPost.text = ''
       }
     }
@@ -52,7 +54,7 @@ input {
   writing-mode: initial;
 }
 button {
-  margin-right: 100%;
+  margin-right: -100%;
   margin-left: 2rem;
   transform: rotate(90deg);
   transform-origin: top left;
