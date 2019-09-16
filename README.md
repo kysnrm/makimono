@@ -1,10 +1,10 @@
 # makimono
 
-> Vertical Writing SNS
+The Vertical Writing SNS
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ yarn install
 
