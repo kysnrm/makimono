@@ -42,15 +42,11 @@ export default {
 
 <style scoped>
 .container {
-  margin-right: 32px;
   padding: 1rem;
-  position: fixed;
-  right: 0;
   color: #333;
-  writing-mode: vertical-rl;
 }
 form {
-  margin-left: 2rem;
+  margin-left: 4rem;
 }
 input {
   width: 6rem;
@@ -64,12 +60,11 @@ input {
 button {
   font-size: 1rem;
   padding: 0.5rem 1rem;
+  margin-right: -6rem;
   border-radius: 2rem;
   background-color: #42b983;
   color: #fff;
   border: none;
-  margin-right: -100%;
-  margin-left: 2rem;
   transform: rotate(90deg);
   transform-origin: top left;
   font-weight: 700;
@@ -84,6 +79,6 @@ button:hover {
   box-shadow: 0 0 0 0.25rem #a3e6b7;
 }
 .post {
-  margin-left: 0.5rem;
+  margin-left: 1rem;
 }
 </style>
