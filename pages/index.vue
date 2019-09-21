@@ -1,10 +1,22 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addNewPost(newPost.author, newPost.text)">
+    <form @submit.prevent="addNewPost(newPostAuthor, newPostText)">
       <label for="author">名前</label>
-      <input id="author" v-model="newPost.author" type="text" name="author" />
+      <input
+        id="author"
+        :value="newPostAuthor"
+        type="text"
+        name="author"
+        @input="updateNewPostAuthor"
+      />
       <label for="text">本文</label>
-      <input id="text" v-model="newPost.text" type="text" name="text" />
+      <input
+        id="text"
+        :value="newPostText"
+        type="text"
+        name="text"
+        @input="updateNewPostText"
+      />
       <button type="submit">投稿する</button>
     </form>
     <posted-item
@@ -24,21 +36,27 @@ export default {
   components: {
     PostedItem
   },
-  data: () => {
-    return {
-      newPost: { author: '', text: '' }
-    }
-  },
   computed: {
     posts() {
       return this.$store.state.posts.list
+    },
+    newPostAuthor() {
+      return this.$store.state.posts.newPostAuthor
+    },
+    newPostText() {
+      return this.$store.state.posts.newPostText
     }
   },
   methods: {
+    updateNewPostAuthor(e) {
+      this.$store.commit('posts/updateNewPostAuthor', e.target.value)
+    },
+    updateNewPostText(e) {
+      this.$store.commit('posts/updateNewPostText', e.target.value)
+    },
     addNewPost(author, text) {
       if (author !== '' && text !== '') {
         this.$store.commit('posts/add', { author, text })
-        this.newPost.text = ''
       }
     }
   }
