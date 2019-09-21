@@ -9,8 +9,6 @@ describe('KanjiizedDate', () => {
         date: date
       }
     })
-    expect(wrapper.vm.dateKanjinizer(date)).toBe(
-      '二〇一九年九月一日十四時二十分'
-    )
+    expect(wrapper.vm.dateKanjinizer(date)).toBe('二〇一九年九月一日十四時二分')
   })
 })
