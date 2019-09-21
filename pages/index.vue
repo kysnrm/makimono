@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addPost(newPost.author, newPost.text)">
+    <form @submit.prevent="addNewPost(newPost.author, newPost.text)">
       <label for="author">名前</label>
       <input id="author" v-model="newPost.author" type="text" name="author" />
       <label for="text">本文</label>
@@ -19,20 +19,25 @@
 
 <script>
 import PostedItem from '@/components/PostedItem'
+
 export default {
   components: {
     PostedItem
   },
   data: () => {
     return {
-      newPost: { author: '', text: '' },
-      posts: []
+      newPost: { author: '', text: '' }
+    }
+  },
+  computed: {
+    posts() {
+      return this.$store.state.posts.list
     }
   },
   methods: {
-    addPost(author, text) {
+    addNewPost(author, text) {
       if (author !== '' && text !== '') {
-        this.posts.unshift({ author, text, createdAt: new Date() })
+        this.$store.commit('posts/add', { author, text })
         this.newPost.text = ''
       }
     }
