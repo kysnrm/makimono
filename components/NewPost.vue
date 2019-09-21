@@ -42,3 +42,32 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+input {
+  width: 6rem;
+  margin-right: -6rem;
+  margin-left: 2rem;
+  display: block;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  writing-mode: initial;
+}
+button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin-right: -6rem;
+  border-radius: 2rem;
+  background-color: #42b983;
+  color: #fff;
+  border: none;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  font-weight: 700;
+  writing-mode: initial;
+  transition: 0.2s ease;
+}
+button:hover {
+  background-color: #2a917a;
+}
+</style>
