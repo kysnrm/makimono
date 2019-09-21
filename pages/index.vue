@@ -28,6 +28,14 @@ export default {
 }
 </script>
 
+<style>
+*:focus {
+  outline: 0;
+  border: 0;
+  box-shadow: 0 0 0 0.25rem #a3e6b7;
+}
+</style>
+
 <style scoped>
 .container {
   padding: 1rem;
@@ -35,10 +43,6 @@ export default {
 }
 .new-post {
   margin-left: 4rem;
-}
-*:focus {
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem #a3e6b7;
 }
 .post {
   margin-left: 1rem;

@@ -36,5 +36,6 @@ export default {
 .post-text {
   margin-left: 0.625rem;
   line-height: 1.25;
+  white-space: pre-wrap;
 }
 </style>

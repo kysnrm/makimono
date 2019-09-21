@@ -9,12 +9,13 @@
       @input="updateNewPostAuthor"
     />
     <label for="text">本文</label>
-    <input
+    <textarea
       id="text"
       :value="newPost.text"
       type="text"
       name="text"
       @input="updateNewPostText"
+      @keyup.ctrl.enter="addNewPost(newPost.author, newPost.text)"
     />
     <button type="submit">投稿する</button>
   </form>
@@ -44,7 +45,8 @@ export default {
 </script>
 
 <style scoped>
-input {
+input,
+textarea {
   width: 6rem;
   margin-right: -6rem;
   margin-left: 2rem;
@@ -52,6 +54,12 @@ input {
   transform: rotate(90deg);
   transform-origin: top left;
   writing-mode: initial;
+}
+input {
+  width: 6rem;
+  margin-right: -6rem;
+  margin-left: 2rem;
+  display: block;
 }
 button {
   font-size: 1rem;
