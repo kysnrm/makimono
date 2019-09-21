@@ -24,7 +24,6 @@ export default {
 .post {
   height: 16rem;
   padding: 1rem;
-  border-radius: 0.25rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3);
   word-wrap: break-word;
 }
@@ -36,5 +35,6 @@ export default {
 .post-text {
   margin-left: 0.625rem;
   line-height: 1.25;
+  white-space: pre-wrap;
 }
 </style>
