@@ -1,81 +1,84 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addItem(newPost.author, newPost.text)">
+    <form @submit.prevent="addPost(newPost.author, newPost.text)">
       <label for="author">名前</label>
       <input id="author" v-model="newPost.author" type="text" name="author" />
       <label for="text">本文</label>
       <input id="text" v-model="newPost.text" type="text" name="text" />
-      <input type="submit" value="投稿する" />
+      <button type="submit">投稿する</button>
     </form>
-    <div v-for="(item, index) in items" :key="index">
-      {{ item.author }}
-      {{ item.text }}
-      <kanjinized-date :date="item.createdAt"></kanjinized-date>
-    </div>
+    <posted-item
+      v-for="(post, index) in posts"
+      :key="index"
+      :author="post.author"
+      :text="post.text"
+      :created-at="post.createdAt"
+    ></posted-item>
   </div>
 </template>
 
 <script>
-import kanjinizedDate from '@/components/date'
+import PostedItem from '@/components/PostedItem'
 export default {
   components: {
-    'kanjinized-date': kanjinizedDate
+    PostedItem
   },
   data: () => {
     return {
       newPost: { author: '', text: '' },
-      items: []
+      posts: []
     }
   },
   methods: {
-    addItem(author, text) {
+    addPost(author, text) {
       if (author !== '' && text !== '') {
-        this.items.push({ author, text, createdAt: new Date() })
+        this.posts.unshift({ author, text, createdAt: new Date() })
         this.newPost.text = ''
       }
-    },
-    dateKanjinizer(createdAt) {
-      const kanjinizedNum = [
-        '〇',
-        '一',
-        '二',
-        '三',
-        '四',
-        '五',
-        '六',
-        '七',
-        '八',
-        '九'
-      ]
-      const year = createdAt.getFullYear()
-      const splittedYear = year.toString().split('')
-      const kanjinizedYear = splittedYear
-        .map((x) => kanjinizedNum[parseInt(x, 10)])
-        .join('')
-      function kanjinizedDoubleDigit(num) {
-        const tensPlace = Math.floor(num / 10)
-        const onesPlace = num % 10
-        if (tensPlace === 0) {
-          return kanjinizedNum[num]
-        }
-        if (tensPlace === 1) {
-          return '十' + kanjinizedNum[onesPlace]
-        }
-        return kanjinizedNum[tensPlace] + '十' + kanjinizedNum[onesPlace]
-      }
-      const month = createdAt.getMonth()
-      const kanjinizedMonth = kanjinizedDoubleDigit(month)
-      const date = createdAt.getDate()
-      const kanjinizedDate = kanjinizedDoubleDigit(date)
-      const hour = createdAt.getHours()
-      const kanjinizedHour = kanjinizedDoubleDigit(hour)
-      const minute = createdAt.getMinutes()
-      const kanjinizedMinute = kanjinizedDoubleDigit(minute)
-      const kanjinizedFullDate = `${kanjinizedYear}年${kanjinizedMonth}月${kanjinizedDate}日${kanjinizedHour}時${kanjinizedMinute}分`
-      return kanjinizedFullDate
     }
   }
 }
 </script>
 
-<style></style>
+<style scoped>
+.container {
+  padding: 1rem;
+  color: #333;
+}
+form {
+  margin-left: 4rem;
+}
+input {
+  width: 6rem;
+  margin-right: -6rem;
+  margin-left: 2rem;
+  display: block;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  writing-mode: initial;
+}
+button {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  margin-right: -6rem;
+  border-radius: 2rem;
+  background-color: #42b983;
+  color: #fff;
+  border: none;
+  transform: rotate(90deg);
+  transform-origin: top left;
+  font-weight: 700;
+  writing-mode: initial;
+  transition: 0.2s ease;
+}
+button:hover {
+  background-color: #2a917a;
+}
+*:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem #a3e6b7;
+}
+.post {
+  margin-left: 1rem;
+}
+</style>

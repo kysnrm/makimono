@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils'
-import kanjinizedDate from '@/components/date'
+import KanjinizedDate from '@/components/KanjinizedDate'
 
-describe('kanjiizedDate', () => {
+describe('KanjiizedDate', () => {
   test('is correct', () => {
     const date = new Date(2019, 9, 1, 14, 20, 0)
-    const wrapper = mount(kanjinizedDate, {
+    const wrapper = mount(KanjinizedDate, {
       propsData: {
         date: date
       }
