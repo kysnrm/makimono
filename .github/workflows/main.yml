@@ -1,10 +1,9 @@
-name: CI
+name: Test
 
-on: [push]
+on: [pull_request, push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -17,3 +16,10 @@ jobs:
         run: npm install
       - name: Run test
         run: npm test
+      - uses: 8398a7/action-slack@v2
+        with:
+          status: ${{ job.status }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
