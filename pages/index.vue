@@ -1,24 +1,6 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addNewPost(newPost.author, newPost.text)">
-      <label for="author">名前</label>
-      <input
-        id="author"
-        :value="newPost.author"
-        type="text"
-        name="author"
-        @input="updateNewPostAuthor"
-      />
-      <label for="text">本文</label>
-      <input
-        id="text"
-        :value="newPost.text"
-        type="text"
-        name="text"
-        @input="updateNewPostText"
-      />
-      <button type="submit">投稿する</button>
-    </form>
+    <new-post></new-post>
     <posted-item
       v-for="(post, index) in posts"
       :key="index"
@@ -30,11 +12,13 @@
 </template>
 
 <script>
+import NewPost from '@/components/NewPost'
 import PostedItem from '@/components/PostedItem'
 
 export default {
   components: {
-    PostedItem
+    PostedItem,
+    NewPost
   },
   computed: {
     newPost() {
