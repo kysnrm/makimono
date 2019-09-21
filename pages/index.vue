@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addNewPost(newPostAuthor, newPostText)">
+    <form @submit.prevent="addNewPost(newPost.author, newPost.text)">
       <label for="author">名前</label>
       <input
         id="author"
-        :value="newPostAuthor"
+        :value="newPost.author"
         type="text"
         name="author"
         @input="updateNewPostAuthor"
@@ -12,7 +12,7 @@
       <label for="text">本文</label>
       <input
         id="text"
-        :value="newPostText"
+        :value="newPost.text"
         type="text"
         name="text"
         @input="updateNewPostText"
@@ -37,14 +37,11 @@ export default {
     PostedItem
   },
   computed: {
+    newPost() {
+      return this.$store.state.posts.newPost
+    },
     posts() {
       return this.$store.state.posts.list
-    },
-    newPostAuthor() {
-      return this.$store.state.posts.newPostAuthor
-    },
-    newPostText() {
-      return this.$store.state.posts.newPostText
     }
   },
   methods: {

@@ -1,22 +1,24 @@
 export const state = () => ({
-  newPostAuthor: '',
-  newPostText: '',
+  newPost: {
+    author: '',
+    text: ''
+  },
   list: []
 })
 
 export const mutations = {
+  updateNewPostAuthor(state, value) {
+    state.newPost.author = value
+  },
+  updateNewPostText(state, value) {
+    state.newPost.text = value
+  },
   add(state, payload) {
     state.list.unshift({
       author: payload.author,
       text: payload.text,
       createdAt: new Date()
     })
-    state.newPostText = ''
-  },
-  updateNewPostAuthor(state, author) {
-    state.newPostAuthor = author
-  },
-  updateNewPostText(state, text) {
-    state.newPostText = text
+    state.newPost.text = ''
   }
 }
