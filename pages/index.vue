@@ -1,10 +1,22 @@
 <template>
   <div class="container">
-    <form @submit.prevent="addPost(newPost.author, newPost.text)">
+    <form @submit.prevent="addNewPost(newPost.author, newPost.text)">
       <label for="author">名前</label>
-      <input id="author" v-model="newPost.author" type="text" name="author" />
+      <input
+        id="author"
+        :value="newPost.author"
+        type="text"
+        name="author"
+        @input="updateNewPostAuthor"
+      />
       <label for="text">本文</label>
-      <input id="text" v-model="newPost.text" type="text" name="text" />
+      <input
+        id="text"
+        :value="newPost.text"
+        type="text"
+        name="text"
+        @input="updateNewPostText"
+      />
       <button type="submit">投稿する</button>
     </form>
     <posted-item
@@ -19,21 +31,29 @@
 
 <script>
 import PostedItem from '@/components/PostedItem'
+
 export default {
   components: {
     PostedItem
   },
-  data: () => {
-    return {
-      newPost: { author: '', text: '' },
-      posts: []
+  computed: {
+    newPost() {
+      return this.$store.state.posts.newPost
+    },
+    posts() {
+      return this.$store.state.posts.list
     }
   },
   methods: {
-    addPost(author, text) {
+    updateNewPostAuthor(e) {
+      this.$store.commit('posts/updateNewPostAuthor', e.target.value)
+    },
+    updateNewPostText(e) {
+      this.$store.commit('posts/updateNewPostText', e.target.value)
+    },
+    addNewPost(author, text) {
       if (author !== '' && text !== '') {
-        this.posts.unshift({ author, text, createdAt: new Date() })
-        this.newPost.text = ''
+        this.$store.commit('posts/add', { author, text })
       }
     }
   }
