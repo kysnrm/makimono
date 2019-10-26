@@ -1,3 +1,5 @@
+import { db } from '@/plugins/firebase'
+
 export const state = () => ({
   newPost: {
     author: '',
@@ -20,5 +22,10 @@ export const mutations = {
       createdAt: new Date()
     })
     state.newPost.text = ''
+    db.collection('posts').add({
+      author: payload.author,
+      text: payload.text,
+      createdAt: new Date()
+    })
   }
 }
