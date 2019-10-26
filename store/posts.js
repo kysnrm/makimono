@@ -15,7 +15,7 @@ export const mutations = {
   updateNewPostText(state, value) {
     state.newPost.text = value
   },
-  add(state, payload) {
+  addPost(state, payload) {
     state.list.unshift({
       author: payload.author,
       text: payload.text,

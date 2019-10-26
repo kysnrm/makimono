@@ -39,7 +39,7 @@ export default {
     },
     addNewPost(author, text) {
       if (author !== '' && text !== '') {
-        this.$store.commit('posts/add', { author, text })
+        this.$store.commit('posts/addPost', { author, text })
       }
     }
   }
