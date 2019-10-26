@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 export default {
   mode: 'spa',
   /*
@@ -40,7 +42,8 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Axios module configuration
@@ -55,5 +58,8 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+  },
+  env: {
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY
   }
 }
